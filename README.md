@@ -1,3 +1,7 @@
+# Twine의 소스코드를 분석하여 주석으로 달아놓읍시다.
+
+---
+
 ## twinejs
 
 by Chris Klimas, Leon Arnott, Daithi O Crualaoich, Ingrid Cheung, Thomas Michael
@@ -11,10 +15,10 @@ This is a port of Twine to a browser and Electron app. See
 The story formats in minified format under `story-formats/` exist in separate
 repositories:
 
--   [Harlowe](https://foss.heptapod.net/games/harlowe/)
--   [Paperthin](https://github.com/klembot/paperthin)
--   [Snowman](https://github.com/klembot/snowman)
--   [SugarCube](https://github.com/tmedwards/sugarcube-2)
+- [Harlowe](https://foss.heptapod.net/games/harlowe/)
+- [Paperthin](https://github.com/klembot/paperthin)
+- [Snowman](https://github.com/klembot/snowman)
+- [SugarCube](https://github.com/tmedwards/sugarcube-2)
 
 ### INSTALL
 
