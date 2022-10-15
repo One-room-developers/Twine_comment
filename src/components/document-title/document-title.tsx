@@ -18,19 +18,19 @@ export const DocumentTitle: React.FC<DocumentTitleProps> = ({title}) => {
 	// window title bar--possibly tied to using a <HashRouter>. If it does in a
 	// future version, we can just use react-helmet directly.
 
-	React.useEffect(() => {
+	React.useEffect(() => {                                          /** setTimeout(실행할 함수, 기다릴 시간) */
 		if (isElectronRenderer()) {
-			const timeout = window.setTimeout(() => {
-				document.querySelector('title')!.innerHTML = title;
+			const timeout = window.setTimeout(() => {                   // 반환값 1. const timeout에 1 저장
+				document.querySelector('title')!.innerHTML = title;       // title 태그의 내용을 새로만든 스토리의 제목으로 바꿈
 			}, 0);
 
-			return () => window.clearTimeout(timeout);
+			return () => window.clearTimeout(timeout);                // setTimeout() 해제.
 		}
-	}, [title]);
+	}, [title]);                  // title값이 바뀔 때마다 실행
 
 	return (
-		<Helmet>
-			<title>{title}</title>
+		<Helmet>                        // HTML의 헤더값을 변경할 때 사용하는 리액트 컴포넌트
+			<title>{title}</title>        // 새로 만든 스토리의 제목으로 title 변경
 		</Helmet>
 	);
 };

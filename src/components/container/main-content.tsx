@@ -24,7 +24,9 @@ export const MainContent = React.forwardRef<HTMLDivElement, MainContentProps>(  
 			() => containerRef.current as HTMLDivElement
 		);
 
-		React.useEffect(() => {                      // 컴포넌트가 렌더링 될 때마다 특정 작업을 실행하는 함수
+		React.useEffect(() => {                      /** 두번째 인자 []가 변경될 때마다 특정 작업을 실행하는 함수
+		                                                 []가 비어있으면 처음 호출될 때만 실행
+																										 []를 생략하면 컴포넌트가 리렌더링 될 때마다 실행 됨  */
 			if (containerRef.current) {
 				containerRef.current.focus();            // containerRef의 현재 엘리먼트에 포커스 유지
 			}
@@ -95,10 +97,10 @@ export const MainContent = React.forwardRef<HTMLDivElement, MainContentProps>(  
 		}, [grabbable]);
 
 		return (
-			<div className={className} ref={containerRef}>
+			<div className={className} ref={containerRef}>                  // 
 				{title && (
 					<>
-						<DocumentTitle title={title} />
+						<DocumentTitle title={title} />              // 새로 만든 스토리의 제목을 DocumentTitle로 넘겨서 HTML 형태로 저장
 						<h1>{title}</h1>
 					</>
 				)}
