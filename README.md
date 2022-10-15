@@ -2,9 +2,11 @@
 
 # useState
 
-ex) const [number, setNumber] = useState(초기값);
-number : 현재 상태
-setNumber : number값 변환 함수 ex)setNumber(number+1);
+## ex) const [number, setNumber] = useState(초기값);
+
+## number : 현재 상태
+
+## setNumber : number값 변환 함수 ex)setNumber(number+1);
 
 # useEffect
 
