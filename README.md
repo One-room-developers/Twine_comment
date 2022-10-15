@@ -2,34 +2,32 @@
 
 # useState
 
-## ex) const [number, setNumber] = useState(초기값);
-
-## number : 현재 상태
-
-## setNumber : number값 변환 함수 ex)setNumber(number+1);
+- ex) const [number, setNumber] = useState(초기값);
+- number : 현재 상태
+- setNumber : number값 변환 함수 ex)setNumber(number+1);
 
 # useEffect
 
-ex) useEffect(() => {
-console.log('Hello World!');
-}, []);
+- ex) useEffect(() => {
+  console.log('Hello World!');
+  }, []);
 
-[]의 값이 변할 때마다 함수 안의 내용이 실행.
-[]가 비어있으면 컴포넌트가 처음 한 번만 실행.
-[]를 생략하면 컴포넌트가 리렌더링 될 때마다 호출됨.
-useEffect 내에서 함수 반환 가능. => cleanup함수. 컴포넌트가 사라질 때 cleanup함수 호출.
+- []의 값이 변할 때마다 함수 안의 내용이 실행.
+- []가 비어있으면 컴포넌트가 처음 한 번만 실행.
+- []를 생략하면 컴포넌트가 리렌더링 될 때마다 호출됨.
+- useEffect 내에서 함수 반환 가능. => cleanup함수. 컴포넌트가 사라질 때 cleanup함수 호출.
 
 # useMemo
 
-ex) useMemo(() => count(number), [number]);
-[]안의 값이 바뀌면 함수를 호출.
-[]값이 바뀌지 않았다면 이전에 연산한 값을 재사용.
+- ex) useMemo(() => count(number), [number]);
+- []안의 값이 바뀌면 함수를 호출.
+- []값이 바뀌지 않았다면 이전에 연산한 값을 재사용.
 
 # useCallback
 
-useMemo와 비슷함.
-useMemo는 특정 결과값을 재사용.
-useCallback은 특정 함수를 재사용
+- useMemo와 비슷함.
+- useMemo는 특정 결과값을 재사용.
+- useCallback은 특정 함수를 재사용
 
 ---
 
