@@ -56,8 +56,8 @@ export const PassageCard: React.FC<PassageCardProps> = React.memo(props => {
 	const container = React.useRef<HTMLDivElement>(null);     // div 엘리먼트의 초기값을 current 속성에 할당. 상태가 변경되어도 다시 렌더링되지 않음
 	/**
 	 * passage.text, t값이 변할 때마다
-	 * passage.text.length가 0보다 크면, passage의 본문을 발췌하여 excerpt에 리턴.
-	 * 본문이 공백 상태라면, deviceType(마우스 클릭 여부)에 따라 span 태그 반환
+	 * 본문이 있으면, passage의 본문을 발췌하여 excerpt에 리턴.
+	 * 본문이 공백 상태라면, placeholder 출력
 	 */
 	const excerpt = React.useMemo(() => {
 		if (passage.text.length > 0) {
@@ -87,13 +87,11 @@ export const PassageCard: React.FC<PassageCardProps> = React.memo(props => {
 		}),
 		[passage.height, passage.left, passage.top, passage.width]
 	);
+	/**
+	 * shift+좌클릭, ctrl+좌클릭하면 passage card 여러 개 선택하는 기능
+	 */
 	const handleMouseDown = React.useCallback(
 		(event: MouseEvent) => {
-			// Shift- or control-clicking toggles our selected status, but doesn't
-			// affect any other passage's selected status. If the shift or control key
-			// was not held down and we were not already selected, we know the user
-			// wants to select only this passage.
-
 			if (event.shiftKey || event.ctrlKey) {
 				if (passage.selected) {
 					onDeselect(passage);
@@ -106,10 +104,16 @@ export const PassageCard: React.FC<PassageCardProps> = React.memo(props => {
 		},
 		[onDeselect, onSelect, passage]
 	);
+	/**
+	 * passage 값이 바뀌면 새로운 onEdit 호출
+	 */
 	const handleEdit = React.useCallback(
 		() => onEdit(passage),
 		[onEdit, passage]
 	);
+	/**
+	 * passage 값이 바뀌면 새로운 onSelect 호출
+	 */
 	const handleSelect = React.useCallback(
 		(value: boolean, exclusive: boolean) => {
 			onSelect(passage, exclusive);
@@ -126,11 +130,11 @@ export const PassageCard: React.FC<PassageCardProps> = React.memo(props => {
 			onStop={onDragStop}
 		>
 			<div className={className} ref={container} style={style}>
-				<SelectableCard
+				<SelectableCard                                            // 선택 가능한 passage card
 					highlighted={passage.highlighted}
 					label={passage.name}
-					onDoubleClick={handleEdit}
-					onSelect={handleSelect}
+					onDoubleClick={handleEdit}             // 더블클릭 시 handleEdit 호출
+					onSelect={handleSelect}                // 텍스트가 선택될 때 handleSeelct 호출
 					selected={passage.selected}
 				>
 					<TagStripe tagColors={tagColors} tags={passage.tags} />

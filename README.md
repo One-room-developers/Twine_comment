@@ -1,5 +1,17 @@
 # Twine의 소스코드를 분석하여 주석으로 달아놓읍시다.
 
+# 분석 끝난 기능
+
+- 스토리 입력(dialogue card, passage card)
+- passage card 드래그
+
+# 분석해야하는 기능
+
+- 선택지 입력
+- passage card 연결
+- Story HTML 형태로 뽑아내기
+- HTML Story로 import
+
 # useState
 
 - ex) const [number, setNumber] = useState(초기값);
