@@ -14,6 +14,7 @@ interface BaseStoryFormat {
 /**
  * States for a story format.
  */
+
 export type StoryFormat =
 	| (BaseStoryFormat & {loadState: 'unloaded'})
 	| (BaseStoryFormat & {loadState: 'loading'})

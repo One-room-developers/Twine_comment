@@ -96,11 +96,13 @@ export const MainContent = React.forwardRef<HTMLDivElement, MainContentProps>(  
 			}
 		}, [grabbable]);
 
+
+		// 새로 만든 스토리의 제목을 DocumentTitle로 넘겨서 HTML 형태로 저장
 		return (
-			<div className={className} ref={containerRef}>                  // 
+			<div className={className} ref={containerRef}>                 
 				{title && (
 					<>
-						<DocumentTitle title={title} />              // 새로 만든 스토리의 제목을 DocumentTitle로 넘겨서 HTML 형태로 저장
+						<DocumentTitle title={title} />             
 						<h1>{title}</h1>
 					</>
 				)}

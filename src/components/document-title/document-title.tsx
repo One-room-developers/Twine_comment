@@ -28,9 +28,11 @@ export const DocumentTitle: React.FC<DocumentTitleProps> = ({title}) => {
 		}
 	}, [title]);                  // title값이 바뀔 때마다 실행
 
+	// HTML의 헤더값을 변경할 때 사용하는 리액트 컴포넌트
+	// 새로 만든 스토리의 제목으로 title 변경
 	return (
-		<Helmet>                        // HTML의 헤더값을 변경할 때 사용하는 리액트 컴포넌트
-			<title>{title}</title>        // 새로 만든 스토리의 제목으로 title 변경
+		<Helmet>                        
+			<title>{title}</title>        
 		</Helmet>
 	);
 };

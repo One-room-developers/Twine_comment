@@ -12,6 +12,13 @@
 - Story HTML 형태로 뽑아내기
 - HTML Story로 import
 
+# 스토리 HTML 변환과 관련된 소스코드
+
+- src/store/undoable-stories/use-story-launch.ts
+- src/store/undoable-stories/use-publishing.ts
+- src/util/story-format/publish.ts
+- src/util/story-format/import.ts
+
 # useState
 
 - ex) const [number, setNumber] = useState(초기값);
