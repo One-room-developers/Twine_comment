@@ -1,3 +1,7 @@
+/**
+ * 스토리 포맷을 정의하는 소스코드
+ */
+
 import {ModeFactory} from 'codemirror';
 import {Thunk} from 'react-hook-thunk-reducer';
 

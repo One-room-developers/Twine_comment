@@ -18,6 +18,8 @@
 - src/store/undoable-stories/use-publishing.ts
 - src/util/story-format/publish.ts
 - src/util/story-format/import.ts
+- src/store/story-formats/action-creators.ts
+- src/store/story-formats/story-formats.types.ts
 
 # useState
 
