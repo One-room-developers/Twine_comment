@@ -1,3 +1,8 @@
+/**
+ * 스토리를 실행하는 코드인듯
+ * 일렉트론 코드 있음
+ */
+
 import {usePublishing} from './use-publishing';
 import {isElectronRenderer} from '../util/is-electron';
 import {TwineElectronWindow} from '../electron/shared';
@@ -15,6 +20,8 @@ export interface UseStoryLaunchProps {
 export function useStoryLaunch(): UseStoryLaunchProps {
 	const {proofStory, publishStory} = usePublishing();
 
+	// 스토리 HTML 파일을 여는 부분인 것 같음
+	
 	if (isElectronRenderer()) {
 		const {twineElectron} = window as TwineElectronWindow;
 
@@ -26,7 +33,7 @@ export function useStoryLaunch(): UseStoryLaunchProps {
 			playStory: async storyId => {
 				twineElectron.ipcRenderer.send(
 					'open-with-temp-file',
-					await publishStory(storyId),
+					await publishStory(storyId),                   
 					'.html'
 				);
 			},
