@@ -167,7 +167,7 @@ export function publishStory(
  * Publishes a story and binds it to the source of a story format.
  * 
  * use-publishing.ts에서 아래 함수를 호출
- * formatSource를 받아서  위에서 생성한 스토리 파일을 스토리 포맷에 맞게 바인딩
+ * formatSource를 받아서 위에서 생성한 스토리 파일을 스토리 포맷에 맞게 바인딩
  */
 export function publishStoryWithFormat(
 	story: Story,

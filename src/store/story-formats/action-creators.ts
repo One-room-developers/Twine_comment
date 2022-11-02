@@ -1,3 +1,8 @@
+/**
+ * 새로운 스토리 포맷 생성 코드
+ * 사용자가 직접 스토리 포맷을 만들고 삭제하는 코드인듯
+ */
+
 import {Thunk} from 'react-hook-thunk-reducer';
 import {StoryFormatsState} from '.';
 import {fetchStoryFormatProperties} from '../../util/story-format/fetch-properties';

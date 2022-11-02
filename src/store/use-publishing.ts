@@ -1,3 +1,7 @@
+/**
+ * 스토리를 스토리 포맷에 바인딩하는 코드
+ */
+
 import * as React from 'react';
 import {
 	publishArchive,
@@ -38,19 +42,19 @@ export function usePublishing(): UsePublishingProps {
 	const {stories} = useStoriesContext();
 
 	return {
-		publishArchive: React.useCallback(
+		publishArchive: React.useCallback(                      // 현재 있는 스토리들을 모아서 아카이브 파일 생성
 			async () => publishArchive(stories, getAppInfo()),
 			[stories]
 		),
 		proofStory: React.useCallback(
 			async storyId => {
-				const story = storyWithId(stories, storyId);
-				const format = formatWithNameAndVersion(
+				const story = storyWithId(stories, storyId);         // 스토리에 아이디를 부여해서 변수에 저장
+				const format = formatWithNameAndVersion(             // 스토리 포맷과 포맷 이름, 버전을 변수에 저장
 					formats,
 					prefs.proofingFormat.name,
 					prefs.proofingFormat.version
 				);
-				const formatProperties = await loadFormatProperties(format)(
+				const formatProperties = await loadFormatProperties(format)(       // 스토리 포맷 프로퍼티 가져옴
 					storyFormatsDispatch
 				);
 
@@ -58,10 +62,15 @@ export function usePublishing(): UsePublishingProps {
 					throw new Error(`Couldn't load story format properties`);
 				}
 
-				return publishStoryWithFormat(
+				/**
+				 * 스토리와 스토리 포맷 source를 넘겨서 
+				 * 스토리를 스토리 포맷에 맞게 바인딩
+				 */
+
+				return publishStoryWithFormat(                                    
 					story,
 					formatProperties.source,
-					getAppInfo()
+					getAppInfo()                   // 현재 Twine의 정보. 버전 등. <tw-storydata> 태그의 creator, creator-version 속성에 들어가는 정보
 				);
 			},
 			[
