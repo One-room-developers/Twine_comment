@@ -27,6 +27,8 @@ export interface StoryFile {
 /**
  * Returns a promise resolving to an array of HTML strings to load from the
  * story directory. Each string corresponds to an individual story.
+ * 
+ * 스토리 디렉토리에서 HTML 문자열을 가져옴
  */
 export async function loadStories() {
 	const storyPath = storyDirectoryPath();
@@ -35,17 +37,17 @@ export async function loadStories() {
 
 	await Promise.all(
 		files
-			.filter(f => /\.html$/i.test(f))
-			.map(async f => {
-				const filePath = join(storyPath, f);
+			.filter(f => /\.html$/i.test(f))           // html파일을 찾아냄
+			.map(async f => {                          // 파일 이름을 읽어서 filePath와 stats에 저장
+				const filePath = join(storyPath, f);   
 				const stats = await stat(filePath);
 
 				if (!stats.isDirectory()) {
-					result.push({
-						mtime: stats.mtime,
-						htmlSource: await readFile(filePath, 'utf8')
+					result.push({                         
+						mtime: stats.mtime,                  // mtime이 스토리 파일을 마지막으로 수정한 날짜인듯
+						htmlSource: await readFile(filePath, 'utf8')      // 스토리 파일을 읽어서 HTML 내용물을 htmlSource에 저장
 					});
-					return fileWasTouched(filePath);
+					return fileWasTouched(filePath);              // 파일 수정 시각 전달
 				}
 			})
 	);
@@ -56,6 +58,8 @@ export async function loadStories() {
 /**
  * Saves story HTML to the file system. This returns a promise that resolves
  * when complete.
+ * 
+ * 스토리 파일을 HTML 형태로 저장
  */
 export async function saveStoryHtml(story: Story, storyHtml: string) {
 	// We save to a temp file first, then overwrite the existing if that succeeds,
@@ -106,6 +110,8 @@ export async function saveStoryHtml(story: Story, storyHtml: string) {
 /**
  * Deletes a story by moving it to the trash. This returns a promise that resolves
  * when finished.
+ * 
+ * 스토리 파일 삭제
  */
 export async function deleteStory(story: Story) {
 	try {
@@ -124,6 +130,8 @@ export async function deleteStory(story: Story) {
 /**
  * Renames a story in the file system. This returns a promise that resolves when
  * finished.
+ * 
+ * 스토리 파일 이름 바꾸기
  */
 export async function renameStory(oldStory: Story, newStory: Story) {
 	try {

@@ -1,3 +1,7 @@
+/**
+ * 언어 번역과 관련된 코드인듯
+ */
+
 import i18next from 'i18next';
 import ca from '../../../public/locales/ca.json';
 import cs from '../../../public/locales/cs.json';

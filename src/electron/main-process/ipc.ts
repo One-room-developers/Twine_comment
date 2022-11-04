@@ -14,6 +14,11 @@ import {loadPrefs} from './prefs';
 import {Story} from '../../store/stories';
 
 export function initIpc() {
+
+	/**
+	 * 스토리를 ID로 각각 구분해서 관리한다는 소리인듯
+	 */
+
 	// We want to debounce story saves so we aren't constantly writing to disk.
 	// However, we need to have individual debounced functions per story so that
 	// saves on multiple stories in one interval aren't lost. So we maintain a set
@@ -29,10 +34,10 @@ export function initIpc() {
 		>
 	> = {};
 
-	ipcMain.on('delete-story', async (event, story) => {
+	ipcMain.on('delete-story', async (event, story) => {            // 메인 프로세스에서 랜더러 프로세스와 통신
 		try {
-			await deleteStory(story);
-			event.sender.send('story-deleted', story);
+			await deleteStory(story);                          // 스토리 파일 삭제 함수
+			event.sender.send('story-deleted', story);        // 정상적으로 삭제 되었다는 메세지
 		} catch (error) {
 			dialog.showErrorBox(
 				i18n.t('electron.errors.storyDelete'),
@@ -43,6 +48,7 @@ export function initIpc() {
 	});
 
 	// These use handle() so that they can return data to the renderer process.
+	// 뭔지 모르겠음
 
 	ipcMain.handle('load-prefs', async () => {
 		try {
@@ -53,9 +59,9 @@ export function initIpc() {
 		}
 	});
 
-	ipcMain.handle('load-stories', loadStories);
+	ipcMain.handle('load-stories', loadStories);             // 스토리 파일 로딩
 
-	ipcMain.handle('load-story-formats', async () => {
+	ipcMain.handle('load-story-formats', async () => {        // 스토리 포맷 로딩
 		try {
 			return await loadStoryFormats();
 		} catch (error) {
@@ -73,7 +79,7 @@ export function initIpc() {
 	// This doesn't use handle() because state reducers in the renderer process
 	// can't be be asynchronous--we have to send a signal back.
 
-	ipcMain.on('rename-story', async (event, oldStory, newStory) => {
+	ipcMain.on('rename-story', async (event, oldStory, newStory) => {            // 스토리 파일 이름 바꾸기
 		try {
 			await renameStory(oldStory, newStory);
 			event.sender.send('story-renamed', oldStory, newStory);
@@ -86,7 +92,7 @@ export function initIpc() {
 		}
 	});
 
-	ipcMain.on('save-json', async (event, filename: string, data: any) => {
+	ipcMain.on('save-json', async (event, filename: string, data: any) => {     // json 파일이 뭔지 모르겠음
 		try {
 			await saveJsonFile(filename, data);
 		} catch (error) {
@@ -98,7 +104,7 @@ export function initIpc() {
 		}
 	});
 
-	ipcMain.on('save-story-html', async (event, story, storyHtml) => {
+	ipcMain.on('save-story-html', async (event, story, storyHtml) => {     // 스토리 HTML 파일 저장
 		try {
 			if (typeof storyHtml !== 'string') {
 				throw new Error('Asked to save non-string as story HTML');
@@ -109,7 +115,7 @@ export function initIpc() {
 			}
 
 			if (!storySavers[story.id]) {
-				storySavers[story.id] = debounce(
+				storySavers[story.id] = debounce(             // debounce는 함수가 호출되는 속도를 제한하는 리액트 훅
 					async (
 						saverEvent: any,
 						saverStory: Story,

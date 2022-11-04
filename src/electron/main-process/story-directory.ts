@@ -5,6 +5,7 @@ import {i18n} from './locales';
 
 /**
  * Returns the full path of the user's story directory.
+ * 유저 스토리의 경로 반환
  */
 export function storyDirectoryPath() {
 	return join(
@@ -18,6 +19,9 @@ export function storyDirectoryPath() {
  * Creates the stories directory, if it doesn't already exist. If it does exist,
  * this does nothing. In either case, it returns a promise that resolves once
  * done.
+ * 
+ * 스토리 디렉토리가 없다면 디렉토리를 생성.
+ * 스토리 publish 하거나 archive 하면 다운로드 폴더에 저장되는데
  */
 export async function createStoryDirectory() {
 	return await mkdirp(storyDirectoryPath());
@@ -25,6 +29,7 @@ export async function createStoryDirectory() {
 
 /**
  * Shows the story directory in the user's file browser.
+ * 다운로드 폴더 경로를 보여줌
  */
 export async function revealStoryDirectory() {
 	return await shell.openPath(storyDirectoryPath());
@@ -32,6 +37,7 @@ export async function revealStoryDirectory() {
 
 /**
  * Creates a backup of the entire story directory.
+ * 스토리 디렉토리 백업 생성
  */
 export async function backupStoryDirectory(maxBackups = 10) {
 	console.log('Backing up story library');
