@@ -51,6 +51,17 @@
 - useMemo는 특정 결과값을 재사용.
 - useCallback은 특정 함수를 재사용
 
+# reducer
+
+- ex) function reducer(state=초기값, 액션)
+- state 데이터의 수정방법을 미리 정의하는 함수.
+- state 초기값과 데이터 수정방법을 넣는다.
+
+# dispatch
+
+- ex) dispatch({type:데이터 수정방법})
+- HTML 안에서 reducer 함수를 동작시키는 함수.
+
 ---
 
 ## twinejs
